@@ -62,13 +62,13 @@
   display: flex;
 }
 
-.stv-container .scroll-view .scroll-view-wrapper{
+.stv-container .scroll-view .scroll-view-wrapper {
   height: 100%;
 }
- .one-scene {
-   height: 93%;
- }
 
+.one-scene {
+  height: 93%;
+}
 
 .one-scene .row {
   padding: 20rpx 30rpx 20rpx 30rpx;
@@ -96,4 +96,22 @@
 .one-scene .row image {
   width: 250rpx;
   height: 250rpx;
+}
+
+.yedd .row image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.yedd .row  .text_box {
+  float: right;
+  width: 520rpx;
+}
+.yedd .row .text_box > view:first-child {
+  font-size: 35rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.yedd.row .text_box >view:last-child {
+  font-size: 18rpx;
 }
