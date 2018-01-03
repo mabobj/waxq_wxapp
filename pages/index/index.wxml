@@ -1,2 +1,38 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<view class='body'>
+  <view class='tab'>
+    <view id='nav1' bindtap='navClick' data-hi="WeChat" class='nav'>睡前故事</view>
+    <view id='nav2' bindtap='navClick' class='nav'>育儿点滴</view>
+  </view>
+  <view class='{{linkcss}}'></view>
+  <view class='dataList'>
+    <view class='row' wx:key="unique" data-index="{{index}}" wx:for="{{dataList}}" wx:for-item="item">
+      <view class='box'>
+        <view>
+          <image src='{{item.img}}'></image>
+          <view class='new' wx:if="{{item.new}}">
+            <image src='/assets/img/new.png'></image>
+          </view>
+          <view class='text_box'>
+            <view>{{item.title}}</view>
+            <view>
+              <text>主讲人：{{item.reciter}}</text>
+              <text>{{item.time}}</text>
+            </view>
+          </view>
+          <view class='play_btn' bindtap='play_btn' data-item="{{index}}">
+            <image src='/assets/img/play.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='play_box' wx:if='{{play_title!=""}}' >
+    <view class='title'>{{play_title}}</view>
+
+    <view class='btn' bindtap='play_stop'>
+      <image src='{{play_type}}'></image>
+    </view>
+    <view class='time'>3:20/16:59</view>
+  </view>
+</view>

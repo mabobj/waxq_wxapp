@@ -1,1 +1,5 @@
 /* pages/audio/audio.wxss */
+.play_box {
+    margin: auto;
+    width: 600rpx;
+}

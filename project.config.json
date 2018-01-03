@@ -28,6 +28,12 @@
 					"name": "播放页面",
 					"pathName": "pages/audio/audio",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "logs",
+					"pathName": "pages/logs/logs",
+					"query": ""
 				}
 			]
 		}

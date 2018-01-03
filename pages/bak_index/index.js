@@ -1,4 +1,4 @@
-Page({
+uniquePage({
   data:{
     tabs: ['睡前故事', '育儿点滴', '超值划算'],
     stv: {
