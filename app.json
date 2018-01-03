@@ -2,13 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/audio/audio"
-    
+    "pages/audio/audio",
+    "pages/article/article"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "晚安千寻",
     "navigationBarTextStyle": "black"
   }
 }
