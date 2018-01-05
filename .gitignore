@@ -1,0 +1,6 @@
+/.idea/*
+/out/*
+/target/*
+/classes/*
+/*.iml
+/target/

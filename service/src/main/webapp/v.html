@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+		<title></title>
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			iframe {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<iframe id="pagebox" src="" scrolling="auto" frameborder="0"></iframe>
+	</body>
+	<script language="JavaScript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script type="application/javascript">
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+			var r = window.location.search.substr(1).match(reg); //匹配目标参数
+			if(r != null) return unescape(r[2]);
+			return null; //返回参数值
+		}
+
+        uri = getUrlParam("uri");
+		/*if(uri.indexOf("iqiyi.com")>0) {
+            uri = "http://jx.biaoge.tv/index.php?url=" + uri;
+        }else {
+            uri = "http://api.baiyug.cn/vip/index.php?url=" + uri;
+		}*/
+        uri = "http://api.baiyug.cn/vip/index.php?url=" + uri;
+		$("#pagebox").attr("src",uri);
+	</script>
+
+
+
+
+</html>

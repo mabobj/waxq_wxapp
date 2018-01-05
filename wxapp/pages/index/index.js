@@ -6,15 +6,15 @@ Page({
    */
   data: {
     linkcss: "link",
-    play_type:"/assets/img/stop.png",
+    play_type: "/assets/img/stop.png",
     play_title: "",
     dataList: [
-      { new: false, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇1", reciter: "千寻妈妈", time: "6分30秒", src:"http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46"},
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇2", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇3", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇4", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇5", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇6", reciter: "千寻妈妈", time: "6分30秒" }
+      // { new: false, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇1", reciter: "千寻妈妈", time: "6分30秒", src:"http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46"},
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇2", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇3", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇4", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇5", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇6", reciter: "千寻妈妈", time: "6分30秒" }
     ]
   },
 
@@ -89,7 +89,7 @@ Page({
     })
   },
 
-  play_btn: function(e){
+  play_btn: function (e) {
     console.log(this.data.dataList[e.currentTarget.dataset.item]);
     const play_data = this.data.dataList[e.currentTarget.dataset.item];
     const backgroundAudioManager = wx.getBackgroundAudioManager()
@@ -108,26 +108,26 @@ Page({
     })
   },
 
-  play_stop:function(e){
+  play_stop: function (e) {
     const backgroundAudioManager = wx.getBackgroundAudioManager();
     var _type;
-    var self = this; 
+    var self = this;
 
-    backgroundAudioManager.onStop(function(){
+    backgroundAudioManager.onStop(function () {
       console.log("背景音乐停止了");
       self.setData({
-        play_title:""
+        play_title: ""
       })
     });
 
-    if (backgroundAudioManager.paused==false){
+    if (backgroundAudioManager.paused == false) {
       backgroundAudioManager.pause();
       _type = "/assets/img/stop.png";
-    }else{
+    } else {
       //播放器已停止
-      if (typeof (backgroundAudioManager.paused) == "undefined"){
+      if (typeof (backgroundAudioManager.paused) == "undefined") {
         console.log("undefined");
-      }else{
+      } else {
         //暂停状态下重启
         backgroundAudioManager.play();
         _type = "/assets/img/play.png";
