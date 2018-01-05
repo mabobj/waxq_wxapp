@@ -13,11 +13,6 @@ Page({
     duration: "",
     currentTime: "",
     dataList: [
-      { img: "https://wxapp.saiwangame.com/assets/img/text1.png", title: "不同年龄段宝宝如何正确刷牙？", synopsis: "预防宝宝蛀牙一定要让宝宝坚持刷牙，不同年龄段的宝宝，刷牙方式也有所不同，你知道不同年龄段的宝宝该如何正确刷牙吗？39育儿编辑为大家总结了宝宝成长4个阶段的刷牙时间表，家长们可以按照这个时间表来给宝宝刷牙，让宝宝的牙齿健康又漂亮。" },
-      { img: "/assets/img/img001.jpg", title: "给宝宝洗手不是小事，洗错了反而会得病", synopsis: "手是致病菌重要的传播媒介，经常洗手可以预防各种消化道疾病。因此，很多家长会注重给孩子洗手。但洗手也讲究方法，洗得不对可能反而有损健康。" },
-      { img: "/assets/img/img001.jpg", title: "不同年龄段宝宝如何正确刷牙？", synopsis: "预防宝宝蛀牙一定要让宝宝坚持刷牙，不同年龄段的宝宝，刷牙方式也有所不同，你知道不同年龄段的宝宝该如何正确刷牙吗？39育儿编辑为大家总结了宝宝成长4个阶段的刷牙时间表，家长们可以按照这个时间表来给宝宝刷牙，让宝宝的牙齿健康又漂亮。" },
-      { img: "/assets/img/img001.jpg", title: "不同年龄段宝宝如何正确刷牙？", synopsis: "预防宝宝蛀牙一定要让宝宝坚持刷牙，不同年龄段的宝宝，刷牙方式也有所不同，你知道不同年龄段的宝宝该如何正确刷牙吗？39育儿编辑为大家总结了宝宝成长4个阶段的刷牙时间表，家长们可以按照这个时间表来给宝宝刷牙，让宝宝的牙齿健康又漂亮。" },
-      { img: "/assets/img/img001.jpg", title: "不同年龄段宝宝如何正确刷牙？", synopsis: "预防宝宝蛀牙一定要让宝宝坚持刷牙，不同年龄段的宝宝，刷牙方式也有所不同，你知道不同年龄段的宝宝该如何正确刷牙吗？39育儿编辑为大家总结了宝宝成长4个阶段的刷牙时间表，家长们可以按照这个时间表来给宝宝刷牙，让宝宝的牙齿健康又漂亮。" }
     ]
   },
 
@@ -25,7 +20,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this;
 
+    wx.request({
+      url: 'https://wxapp.saiwangame.com/parenting/list',
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data);
+        _this.setData({
+          dataList:res.data
+        })
+      }
+    })
   },
 
   /**

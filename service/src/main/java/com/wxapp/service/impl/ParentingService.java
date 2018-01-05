@@ -11,10 +11,12 @@ import java.util.Map;
 public class ParentingService extends BaseService implements ParentingIface {
 
     @Override
-    public List getList(int rowNo) {
-        List<Map<String, Object>> list = jdbcTemplate.queryForList("SELECT @rownum:=@rownum+1 rownum, t.* FROM\n" +
-                "(SELECT @rownum:=0,t.* FROM parenting_info t ORDER BY t.`create_time` DESC LIMIT ?,10) t", rowNo);
-        return null;
+    public List<Map<String, Object>> getList(String rowNo) {
+        if (rowNo == null || rowNo.equals("")) {
+            rowNo = "0";
+        }
+        return jdbcTemplate.queryForList("SELECT @rownum:=@rownum+1 rownum, t.* FROM\n" +
+                "(SELECT @rownum:=0,t.* FROM parenting_info t ORDER BY t.`create_time` DESC LIMIT "+rowNo+",10) t");
     }
 
     @Override

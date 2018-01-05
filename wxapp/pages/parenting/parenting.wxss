@@ -52,6 +52,7 @@
 
 .dataList .row .box .text_box > view:first-child {
   font-size: 40rpx;
+  font-weight: bold;
   height: 60rpx;
   line-height: 60rpx;
   padding-bottom: 10rpx;

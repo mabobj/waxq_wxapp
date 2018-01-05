@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -16,8 +17,10 @@ public class ParentingAction extends BaseAction {
     @Autowired
     private ParentingIface excelService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public @ResponseBody String getList(int rowNo, Model model) {
-        return JSONArray.fromObject(excelService.getList(rowNo)).toString();
+    @RequestMapping(value = "/list", method = RequestMethod.GET,produces = "application/json; charset=utf-8")
+    public @ResponseBody String getList(@RequestParam(value = "rowNo",required = false)String rowNo, Model model) {
+        String json = JSONArray.fromObject(excelService.getList(rowNo)).toString();
+        logger.debug(json);
+        return json;
     }
 }

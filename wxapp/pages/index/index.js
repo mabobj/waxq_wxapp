@@ -131,7 +131,6 @@ Page({
       backgroundAudioManager.pause();
       _audio.time_stop(this);
       _type = "/assets/img/stop.png";
-      
     } else {
       //播放器已停止
       if (typeof (backgroundAudioManager.paused) == "undefined") {
@@ -139,6 +138,11 @@ Page({
       } else {
         //暂停状态下重启
         backgroundAudioManager.play();
+
+        _audio.timer = setInterval((function () {
+          _audio.time_start(this);
+        }).bind(this), 1000);
+
         _type = "/assets/img/play.png";
       }
     }
