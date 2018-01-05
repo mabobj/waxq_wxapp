@@ -1,0 +1,41 @@
+<view class='body'>
+  <view class='tab'>
+    <navigator class='nav' url="../index/index">
+      <view id='nav1'>睡前故事</view>
+    </navigator>
+    <navigator  class='nav' url="../parenting/parenting">
+      <view id='nav2'>育儿点滴</view>
+    </navigator>
+  </view>
+  <view class='link nav2'></view>
+  <view class='dataList'>
+    <view class='row' wx:key="unique" data-index="{{index}}" wx:for="{{dataList}}" wx:for-item="item">
+      <view class='box'>
+        <navigator url='p_show'>
+          <view>
+            <image src='{{item.img}}'></image>
+            <view class='new' wx:if="{{item.new}}">
+              <image src='/assets/img/new.png'></image>
+            </view>
+            <view class='text_box'>
+              <view>{{item.title}}</view>
+              <view>
+                <text>{{item.synopsis}}</text>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
+  <view class='play_box' wx:if='{{play_title!=""}}'>
+    <view class='title'>{{play_title}}</view>
+
+    <view class='btn' bindtap='play_stop'>
+      <image src='{{play_type}}'></image>
+    </view>
+    <view class='time'>{{currentTime}}/{{duration}}</view>
+  </view>
+
+</view>

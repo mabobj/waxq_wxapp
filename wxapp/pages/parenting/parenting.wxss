@@ -1,0 +1,96 @@
+/* pages/index/index.wxss */
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.tab .nav {
+  width: 50%;
+  text-align: center;
+  font-size: 40rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #69b4ff;
+}
+
+.link {
+  position: absolute;
+  width: 50%;
+  border-bottom: 5rpx solid #69b4ff;
+}
+
+.nav2 {
+  right: 0rpx;
+}
+
+.dataList .row .box {
+  padding: 20rpx;
+  position: relative;
+}
+
+.dataList .row .box image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.dataList .row .box .new {
+  position: absolute;
+  top: 20rpx;
+}
+
+.dataList .row .box .new image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.dataList .row .box .text_box {
+  float: right;
+  width: 480rpx;
+}
+
+.dataList .row .box .text_box > view:first-child {
+  font-size: 40rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-bottom: 10rpx;
+  width: 480rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dataList .row .box .text_box >view:last-child {
+  font-size: 30rpx;
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+}
+
+
+.play_box {
+  position: fixed;
+  bottom: 0rpx;
+  background-color: #eee;
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.play_box >view {
+  float: right;
+  padding-right: 20rpx;
+}
+
+.play_box >view:first-child {
+  float: left;
+  margin-left: 20rpx;
+}
+
+.play_box view image {
+  padding-top: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}

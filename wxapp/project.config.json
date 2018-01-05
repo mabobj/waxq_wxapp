@@ -21,18 +21,24 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
-					"id": -1,
-					"name": "播放页面",
-					"pathName": "pages/audio/audio",
+					"id": 0,
+					"name": "育儿点滴",
+					"pathName": "pages/parenting/parenting",
 					"query": ""
 				},
 				{
 					"id": -1,
 					"name": "logs",
 					"pathName": "pages/logs/logs",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "育儿点滴展示",
+					"pathName": "pages/parenting/p_show",
 					"query": ""
 				}
 			]

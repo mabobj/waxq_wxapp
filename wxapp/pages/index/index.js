@@ -1,20 +1,24 @@
 // pages/index/index.js
+var _audio = require('../../service/audio.js')
+var appInstance = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    linkcss: "link",
     play_type: "/assets/img/stop.png",
     play_title: "",
+    duration: "",
+    currentTime: "",
     dataList: [
-      // { new: false, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇1", reciter: "千寻妈妈", time: "6分30秒", src:"http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46"},
-      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇2", reciter: "千寻妈妈", time: "6分30秒" },
-      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇3", reciter: "千寻妈妈", time: "6分30秒" },
-      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇4", reciter: "千寻妈妈", time: "6分30秒" },
-      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇5", reciter: "千寻妈妈", time: "6分30秒" },
-      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇6", reciter: "千寻妈妈", time: "6分30秒" }
+      { new: false, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇1", reciter: "千寻妈妈", time: "6分30秒", src: "http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46" },
+      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇2", reciter: "千寻妈妈", time: "6分30秒" },
+      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇3", reciter: "千寻妈妈", time: "6分30秒" },
+      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇4", reciter: "千寻妈妈", time: "6分30秒" },
+      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇5", reciter: "千寻妈妈", time: "6分30秒" },
+      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇6", reciter: "千寻妈妈", time: "6分30秒" }
     ]
   },
 
@@ -22,6 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("onLoad");
 
   },
 
@@ -29,13 +34,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log("onReady");
+    _audio.reload_play(this,appInstance)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("onShow");
 
   },
 
@@ -43,14 +50,15 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("onHide");
+    _audio.time_stop(this);
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("onUnload");
   },
 
   /**
@@ -74,25 +82,15 @@ Page({
 
   },
 
-
-  navClick: function (e) {
-    console.log(e.target);
-
-    if (e.target.id == "nav1") {
-      this.data.linkcss = "link";
-    } else if (e.target.id == "nav2") {
-      this.data.linkcss = "link nav2";
-    }
-
-    this.setData({
-      linkcss: this.data.linkcss
-    })
-  },
-
   play_btn: function (e) {
+    //播放
     console.log(this.data.dataList[e.currentTarget.dataset.item]);
     const play_data = this.data.dataList[e.currentTarget.dataset.item];
-    const backgroundAudioManager = wx.getBackgroundAudioManager()
+    const backgroundAudioManager = wx.getBackgroundAudioManager();
+
+
+    appInstance.globalData.play_title = play_data.title;
+
 
     backgroundAudioManager.title = play_data.title;
     backgroundAudioManager.epname = play_data.title;
@@ -105,9 +103,15 @@ Page({
     this.setData({
       play_type: "/assets/img/play.png",
       play_title: play_data.title
-    })
+    });
+
+    _audio.timer = setInterval((function () {
+      _audio.time_start(this);
+    }).bind(this), 1000);
+
   },
 
+  //暂停启动
   play_stop: function (e) {
     const backgroundAudioManager = wx.getBackgroundAudioManager();
     var _type;
@@ -115,14 +119,19 @@ Page({
 
     backgroundAudioManager.onStop(function () {
       console.log("背景音乐停止了");
+      _audio.time_stop(this);
+      appInstance.globalData.play_title ="";
       self.setData({
         play_title: ""
-      })
+      });
     });
 
     if (backgroundAudioManager.paused == false) {
+      //暂停
       backgroundAudioManager.pause();
+      _audio.time_stop(this);
       _type = "/assets/img/stop.png";
+      
     } else {
       //播放器已停止
       if (typeof (backgroundAudioManager.paused) == "undefined") {
@@ -139,4 +148,6 @@ Page({
       play_type: _type
     })
   }
+
+
 })

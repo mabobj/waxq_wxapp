@@ -1,9 +1,13 @@
 <view class='body'>
   <view class='tab'>
-    <view id='nav1' bindtap='navClick' data-hi="WeChat" class='nav'>睡前故事</view>
-    <view id='nav2' bindtap='navClick' class='nav'>育儿点滴</view>
+    <navigator class='nav' url="../index/index">
+      <view id='nav1'>睡前故事</view>
+    </navigator>
+    <navigator  class='nav' url="../parenting/parenting">
+      <view id='nav2'>育儿点滴</view>
+    </navigator>
   </view>
-  <view class='{{linkcss}}'></view>
+  <view class='link'></view>
   <view class='dataList'>
     <view class='row' wx:key="unique" data-index="{{index}}" wx:for="{{dataList}}" wx:for-item="item">
       <view class='box'>
@@ -27,12 +31,13 @@
     </view>
   </view>
 
-  <view class='play_box' wx:if='{{play_title!=""}}' >
+  <view class='play_box' wx:if='{{play_title!=""}}'>
     <view class='title'>{{play_title}}</view>
 
     <view class='btn' bindtap='play_stop'>
       <image src='{{play_type}}'></image>
     </view>
-    <view class='time'>3:20/16:59</view>
+    <view class='time'>{{currentTime}}/{{duration}}</view>
   </view>
+
 </view>

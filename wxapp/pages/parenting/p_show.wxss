@@ -1,0 +1,49 @@
+/* pages/index/index.wxss */
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.tab .nav {
+  width: 50%;
+  text-align: center;
+  font-size: 40rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #69b4ff;
+}
+
+.link {
+  position: absolute;
+  width: 50%;
+  border-bottom: 5rpx solid #69b4ff;
+}
+
+.nav2 {
+  right: 0rpx;
+}
+
+.play_box {
+  position: fixed;
+  bottom: 0rpx;
+  background-color: #eee;
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+.play_box >view{
+  float: right;
+  padding-right: 20rpx;
+}
+.play_box >view:first-child {
+  float: left;
+  margin-left: 20rpx;
+}
+.play_box view image {
+  padding-top: 10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+

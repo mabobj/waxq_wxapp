@@ -1,0 +1,24 @@
+<import src="/wxParse/wxParse.wxml" />
+
+<view class='body'>
+  <view class='tab'>
+    <navigator class='nav' url="../index/index">
+      <view id='nav1'>睡前故事</view>
+    </navigator>
+    <view id='nav2' class='nav'>育儿点滴</view>
+  </view>
+  <view class='link nav2'></view>
+  <view class='box'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+
+  <view class='play_box' wx:if='{{play_title!=""}}'>
+    <view class='title'>{{play_title}}</view>
+
+    <view class='btn' bindtap='play_stop'>
+      <image src='{{play_type}}'></image>
+    </view>
+    <view class='time'>{{currentTime}}/{{duration}}</view>
+  </view>
+
+</view>

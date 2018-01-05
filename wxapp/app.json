@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/audio/audio",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/parenting/parenting",
+    "pages/parenting/p_show"
   ],
   "window": {
     "backgroundTextStyle": "light",

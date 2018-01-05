@@ -12,7 +12,7 @@ import java.util.Map;
 public class AudioService extends BaseService implements AudioIface {
     @Override
     public List getList(int rowNo) {
-        List<Map<String, Object>> list = jdbcTemplate.queryForList("");
+        List<Map<String, Object>> list = jdbcTemplate.queryForList("" );
         return null;
     }
 }
