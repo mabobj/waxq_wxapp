@@ -13,12 +13,12 @@ Page({
     duration: "",
     currentTime: "",
     dataList: [
-      { new: false, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇1", reciter: "千寻妈妈", time: "6分30秒", src: "http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇2", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇3", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇4", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇5", reciter: "千寻妈妈", time: "6分30秒" },
-      { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇6", reciter: "千寻妈妈", time: "6分30秒" }
+      // { new: false, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇1", reciter: "千寻妈妈", time: "6分30秒", src: "http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E061FF02C31F716658E5C81F5594D561F2E88B854E81CAAB7806D5E4F103E55D33C16F3FAC506D1AB172DE8600B37E43FAD&fromtag=46" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇2", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇3", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇4", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇5", reciter: "千寻妈妈", time: "6分30秒" },
+      // { new: true, img: "/assets/img/img001.jpg", title: "猪八戒背媳妇6", reciter: "千寻妈妈", time: "6分30秒" }
     ]
   },
 
@@ -27,6 +27,19 @@ Page({
    */
   onLoad: function (options) {
     console.log("onLoad");
+
+    var _this = this;
+
+    wx.request({
+      url: 'https://wxapp.saiwangame.com/audio/list',
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data);
+        _this.setData({
+          dataList: res.data
+        })
+      }
+    })
 
   },
 
@@ -96,7 +109,7 @@ Page({
     backgroundAudioManager.epname = play_data.title;
     backgroundAudioManager.singer = play_data.reciter;
     backgroundAudioManager.coverImgUrl = play_data.img;
-    backgroundAudioManager.src = play_data.src;
+    backgroundAudioManager.src = play_data.audio_src;
 
 
 

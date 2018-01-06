@@ -13,7 +13,7 @@
       <view class='box'>
         <navigator url='p_show'>
           <view>
-            <image src='{{item.parenting_src}}'></image>
+            <image src='{{item.img}}'></image>
             <view class='new' wx:if="{{item.new}}">
               <image src='/assets/img/new.png'></image>
             </view>

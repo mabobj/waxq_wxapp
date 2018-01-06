@@ -11,8 +11,11 @@ import java.util.Map;
 @Service
 public class AudioService extends BaseService implements AudioIface {
     @Override
-    public List getList(int rowNo) {
-        List<Map<String, Object>> list = jdbcTemplate.queryForList("" );
-        return null;
+    public List<Map<String, Object>> getList(String rowNo) {
+        if (rowNo == null || rowNo.equals("")) {
+            rowNo = "0";
+        }
+        return jdbcTemplate.queryForList("SELECT @rownum:=@rownum+1 rownum, t.* FROM " +
+                "(SELECT @rownum:=0,t.* FROM audio_info t ORDER BY t.`create_time` DESC LIMIT 0,10) t" );
     }
 }

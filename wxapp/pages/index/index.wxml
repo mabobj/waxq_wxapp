@@ -3,7 +3,7 @@
     <navigator class='nav' url="../index/index">
       <view id='nav1'>睡前故事</view>
     </navigator>
-    <navigator  class='nav' url="../parenting/parenting">
+    <navigator class='nav' url="../parenting/parenting">
       <view id='nav2'>育儿点滴</view>
     </navigator>
   </view>
@@ -13,7 +13,7 @@
       <view class='box'>
         <view>
           <image src='{{item.img}}'></image>
-          <view class='new' wx:if="{{item.new}}">
+          <view class='new' wx:if="{{index<5}}">
             <image src='/assets/img/new.png'></image>
           </view>
           <view class='text_box'>
