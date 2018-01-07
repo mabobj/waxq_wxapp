@@ -11,7 +11,7 @@
   <view class='dataList'>
     <view class='row' wx:key="unique" data-index="{{index}}" wx:for="{{dataList}}" wx:for-item="item">
       <view class='box'>
-        <navigator url='p_show'>
+        <navigator url='p_show?id={{item.id}}'>
           <view>
             <image src='{{item.img}}'></image>
             <view class='new' wx:if="{{item.new}}">

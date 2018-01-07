@@ -226,6 +226,23 @@
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15 -->
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcprov-jdk15</artifactId>
+      <version>1.46</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.codehaus.xfire/xfire-all -->
+    <!--<dependency>
+      <groupId>org.codehaus.xfire</groupId>
+      <artifactId>xfire-all</artifactId>
+      <version>1.2.6</version>
+    </dependency>-->
+
+
   </dependencies>
   <build>
     <finalName>wxapp_service</finalName>

@@ -24,11 +24,18 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://wxapp.saiwangame.com/t.html',
+      url: 'https://wxapp.saiwangame.com/parenting/show',
       method: 'GET',
+      data: {
+        id: options.id
+      },
       success: function (res) {
-        var article = res.data;
+        var article = res.data.article_html;
         WxParse.wxParse('article', 'html', article, that, 5);
+        let _title = res.data.title;
+        that.setData({
+          title:_title
+        })
       }
     })
   },
@@ -78,7 +85,19 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: this.data.title,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

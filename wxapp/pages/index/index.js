@@ -26,7 +26,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("onLoad");
+
+    wx.showLoading({
+      title: '加载中',
+    });
+
 
     var _this = this;
 
@@ -34,10 +38,15 @@ Page({
       url: 'https://wxapp.saiwangame.com/audio/list',
       method: 'GET',
       success: function (res) {
-        console.log(res.data);
+        console.log(res.data.length);
+        for(var i=0;i<res.data.length;i++){
+          res.data[i].time = _audio.secondToDateZh(res.data[i].time)
+        }
+        
         _this.setData({
           dataList: res.data
-        })
+        });
+        wx.hideLoading();
       }
     })
 
@@ -47,23 +56,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log("onReady");
-    _audio.reload_play(this,appInstance)
+    _audio.reload_play(this, appInstance)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow");
-
+    _audio.reload_play(this, appInstance)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log("onHide");
     _audio.time_stop(this);
   },
 
@@ -71,7 +77,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("onUnload");
   },
 
   /**
@@ -91,8 +96,20 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: "晚安千寻-睡前故事",
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
 
   play_btn: function (e) {
@@ -133,7 +150,7 @@ Page({
     backgroundAudioManager.onStop(function () {
       console.log("背景音乐停止了");
       _audio.time_stop(this);
-      appInstance.globalData.play_title ="";
+      appInstance.globalData.play_title = "";
       self.setData({
         play_title: ""
       });

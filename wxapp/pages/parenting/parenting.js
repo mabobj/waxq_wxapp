@@ -21,6 +21,9 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
+    wx.showLoading({
+      title: '加载中',
+    });
 
     wx.request({
       url: 'https://wxapp.saiwangame.com/parenting/list',
@@ -29,7 +32,8 @@ Page({
         console.log(res.data);
         _this.setData({
           dataList:res.data
-        })
+        });
+        wx.hideLoading();
       }
     })
   },
@@ -81,8 +85,20 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: "晚安千寻-育儿点滴",
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
 
 

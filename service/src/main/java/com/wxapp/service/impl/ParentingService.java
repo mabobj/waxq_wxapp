@@ -16,7 +16,7 @@ public class ParentingService extends BaseService implements ParentingIface {
             rowNo = "0";
         }
         return jdbcTemplate.queryForList("SELECT @rownum:=@rownum+1 rownum, t.* FROM\n" +
-                "(SELECT @rownum:=0,t.* FROM parenting_info t ORDER BY t.`create_time` DESC LIMIT "+rowNo+",10) t");
+                "(SELECT @rownum:=0,t.id,t.img,t.create_time,t.synopsis,t.title FROM parenting_info t ORDER BY t.`create_time` DESC LIMIT "+rowNo+",10) t");
     }
 
     @Override

@@ -75,3 +75,22 @@ function secondToDate (msd) {
 }
 
 module.exports.secondToDate = secondToDate
+
+
+
+//播放时间格式化
+function secondToDateZh(msd) {
+  var time = msd
+  if (null != time && "" != time) {
+    if (time > 60) {
+      time = parseInt(time / 60.0) + "分" + parseInt((parseFloat(time / 60.0) -
+        parseInt(time / 60.0)) * 60) + "秒";
+    }
+    else {
+      time = parseInt(time) + "秒";
+    }
+  }
+  return time;
+}
+
+module.exports.secondToDateZh = secondToDateZh

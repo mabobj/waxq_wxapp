@@ -3,6 +3,7 @@ package com.wxapp.web.action;
 import com.wxapp.frame.base.BaseAction;
 import com.wxapp.service.iface.ParentingIface;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,5 +23,11 @@ public class ParentingAction extends BaseAction {
         String json = JSONArray.fromObject(excelService.getList(rowNo)).toString();
         logger.debug(json);
         return json;
+    }
+
+    @RequestMapping(value = "/show", method = RequestMethod.GET,produces = "application/json; charset=utf-8")
+    public @ResponseBody
+    String show(String id, Model model) {
+        return JSONObject.fromObject(excelService.getObj(id)).toString();
     }
 }
