@@ -122,7 +122,7 @@ Page({
     appInstance.globalData.play_title = play_data.title;
 
 
-    backgroundAudioManager.title = play_data.title;
+    backgroundAudioManager.title = "[晚安千寻]"+play_data.title;
     backgroundAudioManager.epname = play_data.title;
     backgroundAudioManager.singer = play_data.reciter;
     backgroundAudioManager.coverImgUrl = play_data.img;
